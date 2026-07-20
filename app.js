@@ -69,47 +69,44 @@ function setSending(sending) {
   submitButton.querySelector('.submit-loading').hidden = !sending;
 }
 
-replyForm.addEventListener('submit', async (event) => {
-  event.preventDefault();
-  if (!state.answer || document.querySelector('#websiteField').value) return;
+replyForm.addEventListener('submit', (event) => {
+  if (!state.answer || document.querySelector('#websiteField').value) {
+    event.preventDefault();
+    return;
+  }
   setSending(true);
   formStatus.hidden = true;
 
   const guestName = document.querySelector('#guestName').value.trim() || 'Không ghi tên';
   const preferredDate = dateField.hidden ? 'Không áp dụng' : document.querySelector('#preferredDate').value || 'Chưa chọn ngày';
   const guestMessage = messageInput.value.trim() || 'Không có lời nhắn';
-  const formData = new FormData();
-  formData.append('_subject', `💌 Có phản hồi mới: ${state.answer}`);
-  formData.append('_template', 'table');
-  formData.append('_captcha', 'false');
-  formData.append('_honey', '');
-  formData.append('_url', window.location.href);
-  formData.append('Người trả lời', guestName);
-  formData.append('Câu trả lời', state.answer);
-  formData.append('Kế hoạch được chọn', state.plan || 'Chưa chọn kế hoạch');
-  formData.append('Ngày đề xuất', preferredDate);
-  formData.append('Lời nhắn', guestMessage);
-  formData.append('Thời điểm gửi', new Intl.DateTimeFormat('vi-VN', { dateStyle: 'full', timeStyle: 'short', timeZone: 'Asia/Ho_Chi_Minh' }).format(new Date()));
-
-  try {
-    // FormSubmit's AJAX response can be blocked by browser CORS on static hosts.
-    // A no-cors form POST still delivers the response without exposing its body.
-    await fetch('https://formsubmit.co/lequocanhaz@gmail.com', {
-      method: 'POST', mode: 'no-cors', body: formData,
-    });
+  replyForm.querySelectorAll('input[data-generated]').forEach((input) => input.remove());
+  const fields = {
+    _subject: `💌 Có phản hồi mới: ${state.answer}`,
+    _template: 'table',
+    _captcha: 'false',
+    'Người trả lời': guestName,
+    'Câu trả lời': state.answer,
+    'Kế hoạch được chọn': state.plan || 'Chưa chọn kế hoạch',
+    'Ngày đề xuất': preferredDate,
+    'Lời nhắn': guestMessage,
+    'Trang gửi': window.location.href,
+    'Thời điểm gửi': new Intl.DateTimeFormat('vi-VN', { dateStyle: 'full', timeStyle: 'short', timeZone: 'Asia/Ho_Chi_Minh' }).format(new Date()),
+  };
+  Object.entries(fields).forEach(([name, value]) => {
+    const input = document.createElement('input');
+    input.type = 'hidden'; input.name = name; input.value = value;
+    input.dataset.generated = 'true'; replyForm.appendChild(input);
+  });
+  window.setTimeout(() => {
     replyForm.hidden = true;
     formStatus.className = 'form-status form-status--success';
-    formStatus.innerHTML = '<span class="status-emoji" aria-hidden="true">💌</span><strong>Gửi thành công rồi!</strong><p>Cảm ơn cậu đã trả lời. Chiếc thông báo đang bay đến hộp thư nè.</p>';
+    formStatus.innerHTML = '<span class="status-emoji" aria-hidden="true">💌</span><strong>Đã gửi câu trả lời!</strong><p>Cảm ơn cậu nha. Chiếc thông báo đang bay đến hộp thư rồi.</p>';
     formStatus.hidden = false;
+    setSending(false);
     launchConfetti();
     playSuccess();
-  } catch {
-    const subject = encodeURIComponent(`Phản hồi lời mời: ${state.answer}`);
-    const body = encodeURIComponent(`Tên: ${guestName}\nCâu trả lời: ${state.answer}\nKế hoạch: ${state.plan || 'Chưa chọn'}\nNgày: ${preferredDate}\nLời nhắn: ${guestMessage}`);
-    formStatus.className = 'form-status form-status--error';
-    formStatus.innerHTML = `<span class="status-emoji" aria-hidden="true">🥺</span><strong>Chiếc thư chưa bay đi được.</strong><p>Cậu có thể <a href="mailto:lequocanhaz@gmail.com?subject=${subject}&body=${body}">gửi bằng ứng dụng email</a> giúp tớ nhé.</p>`;
-    formStatus.hidden = false;
-  } finally { setSending(false); }
+  }, 700);
 });
 
 let audioContext;
