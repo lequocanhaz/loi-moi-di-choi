@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Một lời mời bé xíu cho một buổi đi chơi thật vui." />
+    <meta name="theme-color" content="#fff9f1" />
+    <title>Một lời mời dành cho cậu 💌</title>
+    <link rel="icon" href="heart.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-noise" aria-hidden="true"></div>
+    <div class="floating-doodles" aria-hidden="true">
+      <span class="doodle doodle--one">✦</span>
+      <span class="doodle doodle--two">♡</span>
+      <span class="doodle doodle--three">☻</span>
+      <span class="doodle doodle--four">✿</span>
+    </div>
+
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Về đầu trang">
+        <span class="brand__mark">♡</span><span>for you</span>
+      </a>
+      <button class="sound-button" id="soundButton" type="button" aria-pressed="false">
+        <span class="sound-button__icon" aria-hidden="true">♫</span>
+        <span class="sound-button__label">bật chút vui</span>
+      </button>
+    </header>
+
+    <main id="top">
+      <section class="hero section-shell" aria-labelledby="heroTitle">
+        <div class="hero__copy">
+          <p class="eyebrow"><span>một lời mời bé xíu</span> dành riêng cho cậu</p>
+          <h1 id="heroTitle">
+            Cậu có muốn<br />
+            <span class="scribble">đi chơi</span> cùng tớ<br />
+            một hôm không?
+          </h1>
+          <p class="hero__intro">
+            Không deadline, không vội vàng — chỉ có đồ ngon, vài câu chuyện
+            và một buổi thật dễ chịu.
+          </p>
+          <div class="hero__actions">
+            <a class="button button--primary" href="#ke-hoach">Mở lời mời <span aria-hidden="true">💌</span></a>
+            <span class="tiny-note">không phải bài kiểm tra đâu nha</span>
+          </div>
+        </div>
+
+        <div class="hero__art" aria-label="Minh họa hai ly nước và một lời nhắn">
+          <div class="tape tape--top" aria-hidden="true"></div>
+          <div class="polaroid">
+            <div class="polaroid__scene">
+              <span class="scene-star scene-star--one" aria-hidden="true">✦</span>
+              <span class="scene-star scene-star--two" aria-hidden="true">✦</span>
+              <div class="sun" aria-hidden="true"></div>
+              <div class="table" aria-hidden="true"></div>
+              <div class="cup cup--left" aria-hidden="true"><span class="cup__straw"></span><span class="cup__face">˶ᵔ ᵕ ᵔ˶</span></div>
+              <div class="cup cup--right" aria-hidden="true"><span class="cup__straw"></span><span class="cup__face">•ᴗ•</span></div>
+            </div>
+            <p class="polaroid__caption">you + me + một ngày đẹp trời?</p>
+          </div>
+          <div class="postcard-note"><span>ghi chú:</span><strong>cậu chỉ cần mang theo cậu thôi ✿</strong></div>
+        </div>
+      </section>
+
+      <section class="promise-band" aria-label="Ba điều về cuộc hẹn">
+        <div><span>01</span><p>Thời gian linh hoạt</p></div>
+        <div><span>02</span><p>Không khí thật chill</p></div>
+        <div><span>03</span><p>Niềm vui có sẵn</p></div>
+      </section>
+
+      <section class="plans section-shell" id="ke-hoach" aria-labelledby="plansTitle">
+        <div class="section-heading">
+          <p class="eyebrow"><span>mini menu</span> chọn một chiếc plan</p>
+          <h2 id="plansTitle">Tụi mình có thể...</h2>
+          <p>Chọn điều làm cậu thấy vui nhất. Mọi kế hoạch đều có thể đổi.</p>
+        </div>
+
+        <div class="plan-grid" role="radiogroup" aria-label="Chọn kế hoạch đi chơi">
+          <button class="plan-card plan-card--peach" type="button" role="radio" aria-checked="false" data-plan="Cà phê và ăn món ngon">
+            <span class="plan-card__number">01</span><span class="plan-card__emoji" aria-hidden="true">🍰</span>
+            <strong>Cà phê &amp; món ngon</strong><small>Tìm một góc xinh, gọi món mình thích và kể nhau nghe đủ chuyện.</small>
+            <span class="plan-card__check">chọn plan này ♡</span>
+          </button>
+          <button class="plan-card plan-card--lavender" type="button" role="radio" aria-checked="false" data-plan="Dạo phố và chụp photobooth">
+            <span class="plan-card__number">02</span><span class="plan-card__emoji" aria-hidden="true">📸</span>
+            <strong>Dạo phố &amp; photobooth</strong><small>Đi lang thang một chút rồi lưu lại một tấm hình thật ngộ.</small>
+            <span class="plan-card__check">chọn plan này ♡</span>
+          </button>
+          <button class="plan-card plan-card--sage" type="button" role="radio" aria-checked="false" data-plan="Ngắm hoàng hôn và tám chuyện">
+            <span class="plan-card__number">03</span><span class="plan-card__emoji" aria-hidden="true">🌇</span>
+            <strong>Hoàng hôn &amp; tám chuyện</strong><small>Một vòng xe, một chỗ đầy gió và một buổi chiều thật chậm.</small>
+            <span class="plan-card__check">chọn plan này ♡</span>
+          </button>
+          <button class="plan-card plan-card--yellow" type="button" role="radio" aria-checked="false" data-plan="Cậu chọn, tớ đồng ý">
+            <span class="plan-card__number">04</span><span class="plan-card__emoji" aria-hidden="true">✨</span>
+            <strong>Cậu chọn, tớ theo</strong><small>Nếu cậu đã có một ý tưởng hay hơn, chiếc plan này là của cậu.</small>
+            <span class="plan-card__check">chọn plan này ♡</span>
+          </button>
+        </div>
+        <p class="selection-hint" id="selectionHint" aria-live="polite">Chưa chọn cũng không sao, mình có thể quyết định sau.</p>
+      </section>
+
+      <section class="reply section-shell" id="phan-hoi" aria-labelledby="replyTitle">
+        <div class="reply__card">
+          <div class="reply__intro">
+            <p class="eyebrow"><span>rsvp</span> câu trả lời của cậu</p>
+            <h2 id="replyTitle">Vậy cậu thấy sao?</h2>
+            <p>Thành thật là đáng yêu nhất. Chọn câu trả lời khiến cậu thoải mái nhé.</p>
+          </div>
+
+          <div class="answer-options" role="radiogroup" aria-label="Chọn câu trả lời">
+            <button class="answer-pill answer-pill--yes" type="button" role="radio" aria-checked="false" data-answer="Đồng ý đi chơi"><span aria-hidden="true">(˶ᵔ ᵕ ᵔ˶)</span> Đồng ý nha!</button>
+            <button class="answer-pill answer-pill--maybe" type="button" role="radio" aria-checked="false" data-answer="Cần xem lại lịch"><span aria-hidden="true">◷</span> Để tớ xem lịch</button>
+            <button class="answer-pill answer-pill--later" type="button" role="radio" aria-checked="false" data-answer="Hẹn một dịp khác"><span aria-hidden="true">♡</span> Hẹn dịp khác nhé</button>
+          </div>
+
+          <form class="reply-form" id="replyForm" hidden>
+            <div class="form-reveal">
+              <p class="form-message" id="formMessage"></p>
+              <div class="field-grid">
+                <label class="field">
+                  <span>Tên của cậu <em>(không bắt buộc)</em></span>
+                  <input id="guestName" type="text" maxlength="60" autocomplete="name" placeholder="Để tớ biết ai vừa trả lời nè" />
+                </label>
+                <label class="field date-field" id="dateField">
+                  <span>Ngày cậu thấy tiện <em>(có thể để trống)</em></span>
+                  <input id="preferredDate" type="date" />
+                </label>
+              </div>
+              <label class="field">
+                <span>Nhắn tớ vài dòng <em>(không bắt buộc)</em></span>
+                <textarea id="guestMessage" rows="4" maxlength="500" placeholder="Ví dụ: Tớ rảnh chiều Chủ nhật nè..."></textarea>
+                <small class="counter"><span id="messageCount">0</span>/500</small>
+              </label>
+              <input class="honey" id="websiteField" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" />
+              <div class="reply-summary" id="replySummary" aria-live="polite"></div>
+              <button class="button button--submit" id="submitButton" type="submit"><span class="submit-text">Gửi câu trả lời 💌</span><span class="submit-loading" hidden>Đang gửi chiếc thư...</span></button>
+              <p class="privacy-note">Phản hồi chỉ được gửi khi cậu bấm nút này. Không có theo dõi bí mật đâu.</p>
+            </div>
+          </form>
+
+          <div class="form-status" id="formStatus" role="status" aria-live="polite" hidden></div>
+        </div>
+      </section>
+
+      <section class="closing section-shell" aria-label="Lời kết">
+        <p>“Một buổi đi chơi vui thường bắt đầu từ một lời mời thật lòng.”</p>
+        <span>— thế nên tớ đã gửi lời mời này đến cậu ♡</span>
+      </section>
+    </main>
+
+    <footer><span>made with a little courage</span><span aria-hidden="true">✿</span><span>and a lot of cuteness</span></footer>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
+    <script src="app.js" defer></script>
+  </body>
+</html>
