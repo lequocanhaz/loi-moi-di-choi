@@ -92,11 +92,11 @@ replyForm.addEventListener('submit', async (event) => {
   formData.append('Thời điểm gửi', new Intl.DateTimeFormat('vi-VN', { dateStyle: 'full', timeStyle: 'short', timeZone: 'Asia/Ho_Chi_Minh' }).format(new Date()));
 
   try {
-    const response = await fetch('https://formsubmit.co/ajax/lequocanhaz@gmail.com', {
-      method: 'POST', headers: { Accept: 'application/json' }, body: formData,
+    // FormSubmit's AJAX response can be blocked by browser CORS on static hosts.
+    // A no-cors form POST still delivers the response without exposing its body.
+    await fetch('https://formsubmit.co/lequocanhaz@gmail.com', {
+      method: 'POST', mode: 'no-cors', body: formData,
     });
-    const payload = await response.json();
-    if (!response.ok || payload?.success === false || payload?.success === 'false') throw new Error('send failed');
     replyForm.hidden = true;
     formStatus.className = 'form-status form-status--success';
     formStatus.innerHTML = '<span class="status-emoji" aria-hidden="true">💌</span><strong>Gửi thành công rồi!</strong><p>Cảm ơn cậu đã trả lời. Chiếc thông báo đang bay đến hộp thư nè.</p>';
