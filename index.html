@@ -5,11 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Một lời mời bé xíu cho một buổi đi chơi thật vui." />
     <meta name="theme-color" content="#fff9f1" />
+    <meta property="og:title" content="Một lời mời dành cho cậu 💌" />
+    <meta property="og:description" content="Có đồ ngon, xem phim, vài câu chuyện và một lời mời thật lòng." />
     <title>Một lời mời dành cho cậu 💌</title>
-    <link rel="icon" href="/heart.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="/styles.css" />
+    <link rel="icon" href="heart.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+    <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
     <div class="page-noise" aria-hidden="true"></div>
     <div class="floating-doodles" aria-hidden="true">
       <span class="doodle doodle--one">✦</span>
@@ -22,10 +26,13 @@
       <a class="brand" href="#top" aria-label="Về đầu trang">
         <span class="brand__mark">♡</span><span>for you</span>
       </a>
-      <button class="sound-button" id="soundButton" type="button" aria-pressed="false">
-        <span class="sound-button__icon" aria-hidden="true">♫</span>
-        <span class="sound-button__label">bật chút vui</span>
-      </button>
+      <div class="header-actions">
+        <a class="music-jump" href="#nhac">Love — Keyshia Cole ♫</a>
+        <button class="sound-button" id="soundButton" type="button" aria-pressed="false">
+          <span class="sound-button__icon" aria-hidden="true">♫</span>
+          <span class="sound-button__label">bật chút vui</span>
+        </button>
+      </div>
     </header>
 
     <main id="top">
@@ -70,6 +77,27 @@
         <div><span>03</span><p>Niềm vui có sẵn</p></div>
       </section>
 
+      <section class="soundtrack section-shell" id="nhac" aria-labelledby="soundtrackTitle">
+        <div class="soundtrack__card">
+          <div class="soundtrack__copy">
+            <p class="eyebrow"><span>our soundtrack</span> nghe cùng nhau nhé</p>
+            <h2 id="soundtrackTitle">Một bài nhạc cho<br /><em>chiếc hẹn này.</em></h2>
+            <p>“Love” của Keyshia Cole — để bật lên lúc mình chuẩn bị đi, hoặc nghe cùng nhau trên đường.</p>
+            <button class="button music-play" id="musicPlayButton" type="button" aria-expanded="false">
+              <span class="music-play__icon" aria-hidden="true">▶</span>
+              <span class="music-play__label">Phát bài “Love”</span>
+            </button>
+            <a class="official-link" href="https://www.youtube.com/watch?v=9PBZy9j3H3I" target="_blank" rel="noopener">Xem MV chính thức ↗</a>
+          </div>
+          <div class="record-player" id="recordPlayer" aria-hidden="true">
+            <div class="record"><span>LOVE</span><small>Keyshia Cole</small></div>
+            <div class="tonearm"></div>
+            <i class="music-note music-note--one">♪</i><i class="music-note music-note--two">♫</i>
+          </div>
+          <div class="music-video" id="musicVideo" hidden></div>
+        </div>
+      </section>
+
       <section class="plans section-shell" id="ke-hoach" aria-labelledby="plansTitle">
         <div class="section-heading">
           <p class="eyebrow"><span>mini menu</span> chọn một chiếc plan</p>
@@ -83,9 +111,9 @@
             <strong>Cà phê &amp; món ngon</strong><small>Tìm một góc xinh, gọi món mình thích và kể nhau nghe đủ chuyện.</small>
             <span class="plan-card__check">chọn plan này ♡</span>
           </button>
-          <button class="plan-card plan-card--lavender" type="button" role="radio" aria-checked="false" data-plan="Dạo phố và chụp photobooth">
-            <span class="plan-card__number">02</span><span class="plan-card__emoji" aria-hidden="true">📸</span>
-            <strong>Dạo phố &amp; photobooth</strong><small>Đi lang thang một chút rồi lưu lại một tấm hình thật ngộ.</small>
+          <button class="plan-card plan-card--lavender" type="button" role="radio" aria-checked="false" data-plan="Dạo phố, chụp photobooth và xem phim">
+            <span class="plan-card__number">02</span><span class="plan-card__emoji" aria-hidden="true">🎬</span>
+            <strong>Dạo phố, phim &amp; photobooth</strong><small>Xem một bộ phim hay, đi lang thang rồi lưu lại một tấm hình thật ngộ.</small>
             <span class="plan-card__check">chọn plan này ♡</span>
           </button>
           <button class="plan-card plan-card--sage" type="button" role="radio" aria-checked="false" data-plan="Ngắm hoàng hôn và tám chuyện">
@@ -100,6 +128,18 @@
           </button>
         </div>
         <p class="selection-hint" id="selectionHint" aria-live="polite">Chưa chọn cũng không sao, mình có thể quyết định sau.</p>
+      </section>
+
+      <section class="secret-note section-shell" aria-labelledby="secretTitle">
+        <div class="secret-note__card">
+          <span class="secret-note__stamp" aria-hidden="true">💌</span>
+          <div>
+            <p class="eyebrow"><span>psst...</span> còn một điều nữa</p>
+            <h2 id="secretTitle">Một lời nhắn chưa mở</h2>
+            <p class="secret-note__reveal" id="secretReveal" hidden>Cảm ơn cậu vì đã đọc đến đây. Thật ra đi đâu cũng được — miễn là hôm đó có cậu. ♡</p>
+          </div>
+          <button class="button secret-note__button" id="secretButton" type="button" aria-expanded="false">Mở lời nhắn ✦</button>
+        </div>
       </section>
 
       <section class="reply section-shell" id="phan-hoi" aria-labelledby="replyTitle">
@@ -155,6 +195,6 @@
     <footer><span>made with a little courage</span><span aria-hidden="true">✿</span><span>and a lot of cuteness</span></footer>
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
     <div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
-    <script src="/app.js" defer></script>
+    <script src="app.js" defer></script>
   </body>
 </html>
