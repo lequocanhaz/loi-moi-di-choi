@@ -11,6 +11,13 @@ const submitButton = document.querySelector('#submitButton');
 const formStatus = document.querySelector('#formStatus');
 const soundButton = document.querySelector('#soundButton');
 const toast = document.querySelector('#toast');
+const musicPlayButton = document.querySelector('#musicPlayButton');
+const musicVideo = document.querySelector('#musicVideo');
+const recordPlayer = document.querySelector('#recordPlayer');
+const secretButton = document.querySelector('#secretButton');
+const secretReveal = document.querySelector('#secretReveal');
+const scrollProgress = document.querySelector('#scrollProgress');
+const cursorGlow = document.querySelector('#cursorGlow');
 
 const state = { plan: '', answer: '', soundOn: false };
 const answerCopy = {
@@ -62,6 +69,50 @@ answerButtons.forEach((button) => button.addEventListener('click', () => {
 }));
 
 messageInput.addEventListener('input', () => { messageCount.textContent = messageInput.value.length; });
+
+musicPlayButton.addEventListener('click', () => {
+  const playing = musicPlayButton.getAttribute('aria-expanded') === 'true';
+  musicPlayButton.setAttribute('aria-expanded', String(!playing));
+  if (playing) {
+    musicVideo.replaceChildren();
+    musicVideo.hidden = true;
+    recordPlayer.hidden = false;
+    musicPlayButton.querySelector('.music-play__icon').textContent = '▶';
+    musicPlayButton.querySelector('.music-play__label').textContent = 'Phát bài “Love”';
+    return;
+  }
+  const iframe = document.createElement('iframe');
+  iframe.src = 'https://www.youtube-nocookie.com/embed/9PBZy9j3H3I?autoplay=1&rel=0';
+  iframe.title = 'Love — Keyshia Cole (Official Music Video)';
+  iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+  iframe.allowFullscreen = true;
+  musicVideo.replaceChildren(iframe);
+  musicVideo.hidden = false;
+  recordPlayer.hidden = true;
+  musicPlayButton.querySelector('.music-play__icon').textContent = '■';
+  musicPlayButton.querySelector('.music-play__label').textContent = 'Dừng bài nhạc';
+  showToast('Đang phát “Love” — Keyshia Cole ♫');
+});
+
+secretButton.addEventListener('click', () => {
+  const open = secretButton.getAttribute('aria-expanded') === 'true';
+  secretButton.setAttribute('aria-expanded', String(!open));
+  secretReveal.hidden = open;
+  secretButton.textContent = open ? 'Mở lời nhắn ✦' : 'Cất lời nhắn ♡';
+  if (!open) { launchConfetti(); playTone(784); }
+});
+
+function updateScrollProgress() {
+  const distance = document.documentElement.scrollHeight - window.innerHeight;
+  scrollProgress.style.transform = `scaleX(${distance > 0 ? window.scrollY / distance : 0})`;
+}
+window.addEventListener('scroll', updateScrollProgress, { passive: true });
+updateScrollProgress();
+
+window.addEventListener('pointermove', (event) => {
+  cursorGlow.style.setProperty('--pointer-x', `${event.clientX}px`);
+  cursorGlow.style.setProperty('--pointer-y', `${event.clientY}px`);
+});
 
 function setSending(sending) {
   submitButton.disabled = sending;
@@ -158,6 +209,6 @@ document.querySelector('#preferredDate').min = today.toISOString().split('T')[0]
 const observer = new IntersectionObserver((entries) => entries.forEach((entry) => {
   if (entry.isIntersecting) entry.target.classList.add('is-revealed');
 }), { threshold: 0.12 });
-document.querySelectorAll('.section-heading, .plan-card, .reply__card').forEach((element) => {
+document.querySelectorAll('.section-heading, .plan-card, .soundtrack__card, .secret-note__card, .reply__card').forEach((element) => {
   element.classList.add('reveal'); observer.observe(element);
 });
