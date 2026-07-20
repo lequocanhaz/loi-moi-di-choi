@@ -6,8 +6,8 @@
     <meta name="description" content="Một lời mời bé xíu cho một buổi đi chơi thật vui." />
     <meta name="theme-color" content="#fff9f1" />
     <title>Một lời mời dành cho cậu 💌</title>
-    <link rel="icon" href="heart.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="/heart.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
     <div class="page-noise" aria-hidden="true"></div>
@@ -116,7 +116,7 @@
             <button class="answer-pill answer-pill--later" type="button" role="radio" aria-checked="false" data-answer="Hẹn một dịp khác"><span aria-hidden="true">♡</span> Hẹn dịp khác nhé</button>
           </div>
 
-          <form class="reply-form" id="replyForm" hidden>
+          <form class="reply-form" id="replyForm" action="https://formsubmit.co/lequocanhaz@gmail.com" method="POST" target="formsubmitSink" hidden>
             <div class="form-reveal">
               <p class="form-message" id="formMessage"></p>
               <div class="field-grid">
@@ -140,6 +140,7 @@
               <p class="privacy-note">Phản hồi chỉ được gửi khi cậu bấm nút này. Không có theo dõi bí mật đâu.</p>
             </div>
           </form>
+          <iframe name="formsubmitSink" title="Gửi phản hồi" hidden></iframe>
 
           <div class="form-status" id="formStatus" role="status" aria-live="polite" hidden></div>
         </div>
@@ -154,6 +155,6 @@
     <footer><span>made with a little courage</span><span aria-hidden="true">✿</span><span>and a lot of cuteness</span></footer>
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
     <div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
-    <script src="app.js" defer></script>
+    <script src="/app.js" defer></script>
   </body>
 </html>
